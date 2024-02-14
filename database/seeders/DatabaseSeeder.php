@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $categories = Category::factory(5)->create();
-        $employers = Employer::factory(10)->create();
+        $employers = Employer::factory(5)->create();
 
         foreach ($employers as $employer) {
             foreach ($categories as $category) {

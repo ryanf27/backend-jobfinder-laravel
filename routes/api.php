@@ -26,6 +26,8 @@ Route::apiResource('/employers', EmployerController::class);
 
 // Users
 Route::apiResource('/users', UserController::class);
+Route::post('/register', [UserController::class], 'store');
+Route::post('/login', [UserController::class], 'login');
 
 // Categories
 Route::apiResource('/categories', CategoryController::class);

@@ -19,26 +19,26 @@ use App\Http\Controllers\CategoryController;
 |
 */
 
-// Jobs
-Route::apiResource('/jobs', JobController::class);
-
-// Employers
-Route::apiResource('/employers', EmployerController::class);
-
-// Users
-Route::get('/users', [UserController::class, 'index']);
-Route::get('/users/{id}', [UserController::class, 'show']);
-Route::put('/users', [UserController::class, 'update']);
-Route::delete('/users', [UserController::class, 'destroy']);
-
 // auth
-Route::post('/register', [AuthController::class,'register']);
+Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
+Route::middleware('auth:sanctum')->group(function () {
+    // Jobs
+    Route::apiResource('/jobs', JobController::class);
 
-// Categories
-Route::apiResource('/categories', CategoryController::class);
+    // Employers
+    Route::apiResource('/employers', EmployerController::class);
 
+    // Users
+    Route::get('/users', [UserController::class, 'index']);
+    Route::get('/users/{id}', [UserController::class, 'show']);
+    Route::put('/users', [UserController::class, 'update']);
+    Route::delete('/users', [UserController::class, 'destroy']);
+
+    // Categories
+    Route::apiResource('/categories', CategoryController::class);
+});
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
